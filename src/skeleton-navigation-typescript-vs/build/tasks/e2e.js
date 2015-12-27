@@ -7,7 +7,7 @@ var protractor = require('gulp-protractor').protractor;
 var typescript = require('gulp-typescript');
 var tsc = require('typescript');
 
-var tsProject = typescript.createProject('./tsconfig.json', { 
+var tsProject = typescript.createProject('./tsconfig.json', {
   typescript: tsc,
   module: 'commonjs'
 });
@@ -33,7 +33,7 @@ gulp.task('e2e', ['build-e2e'], function(cb) {
   return gulp.src(paths.e2eSpecsDist + '/*.js')
     .pipe(protractor({
       configFile: 'protractor.conf.js',
-      args: ['--baseUrl', 'http://127.0.0.1:9000']
+      args: ['--baseUrl', 'http://localhost:9000']
     }))
     .on('end', function() { process.exit(); })
     .on('error', function(e) { throw e; });
