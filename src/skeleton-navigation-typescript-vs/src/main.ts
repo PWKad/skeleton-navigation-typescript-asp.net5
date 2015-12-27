@@ -1,8 +1,5 @@
 import 'bootstrap';
 import {Aurelia} from 'aurelia-framework';
-// import JL from 'jsnlog';
-import * as JL from 'jsnlog';
-import * as toastr from 'toastr';
 
 export function configure(aurelia: Aurelia) {
   aurelia.use

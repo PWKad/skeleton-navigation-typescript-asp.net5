@@ -1,5 +1,6 @@
 module.exports = function(config) {
   config.set({
+    basePath: './',
     frameworks: ['systemjs', 'jasmine'],
     systemjs: {
       configFile: 'wwwroot/config.js',
@@ -10,7 +11,8 @@ module.exports = function(config) {
           "typescript": "node_modules/typescript/lib/typescript.js",
           "systemjs": "node_modules/systemjs/dist/system.js",
           'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js',
-          'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js'
+          'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js',
+          'jspm_packages/*': 'wwwroot/jspm_packages/*'
         },
         packages: {
           'test/unit': {
@@ -30,6 +32,9 @@ module.exports = function(config) {
     files: [
       'test/unit/*.spec.ts'
     ],
+    proxies:{
+      '/base/jspm_packages/' : '/base/wwwroot/jspm_packages/'
+    },
     exclude: [],
     preprocessors: { },
     reporters: ['progress'],

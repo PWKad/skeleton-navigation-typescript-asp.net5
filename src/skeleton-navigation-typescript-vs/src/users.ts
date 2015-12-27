@@ -1,19 +1,13 @@
-import {autoinject, inject} from 'aurelia-framework';
+import {autoinject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
-import {Base} from './base';
-import * as ko from 'knockout';
 import 'fetch';
 
 @autoinject
-export class Users extends Base {
-  heading = ko.observable('Github Users');
-  users = ko.observableArray([]);
-  computedUsers = ko.computed(() => {
-    return this.users();
-  });
+export class Users {
+  heading = 'Github Users';
+  users = [];
 
-  constructor(private http: HttpClient, element: Element) {
-    super(element);
+  constructor(private http: HttpClient) {
     http.configure(config => {
       config
         .useStandardConfiguration()
@@ -24,6 +18,6 @@ export class Users extends Base {
   activate() {
     return this.http.fetch('users')
       .then(response => response.json())
-      .then(users => this.users(users));
+      .then(users => this.users = users);
   }
 }
